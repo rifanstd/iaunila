@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MahasiswaSearchWidget extends StatefulWidget {
+class LiveSearchWidget extends StatefulWidget {
   final String query;
   final String hintText;
   final ValueChanged<String> onChanged;
 
-  const MahasiswaSearchWidget(
+  const LiveSearchWidget(
       {Key? key,
       required this.query,
       required this.hintText,
@@ -13,10 +13,10 @@ class MahasiswaSearchWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<MahasiswaSearchWidget> createState() => _MahasiswaSearchWidgetState();
+  State<LiveSearchWidget> createState() => _LiveSearchWidgetState();
 }
 
-class _MahasiswaSearchWidgetState extends State<MahasiswaSearchWidget> {
+class _LiveSearchWidgetState extends State<LiveSearchWidget> {
   final controller = TextEditingController();
 
   @override

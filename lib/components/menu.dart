@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/api/iaunila_service.dart';
+import 'package:iaunila/screens/jurusan_screen.dart';
 import 'package:iaunila/screens/screens.dart';
 
 class Menu extends StatelessWidget {
@@ -28,57 +29,6 @@ class Menu extends StatelessWidget {
     'Buku Referensi',
     'Penelitian'
   ];
-
-  // final List<Material> myIcon = List.generate(
-  //   10,
-  //   (index) {
-  //
-  //
-  //
-  //
-  //     return Material(
-  //       borderRadius: BorderRadius.circular(20),
-  //       elevation: 4,
-  //       child: Container(
-  //         decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(20),
-  //         ),
-  //         height: 40,
-  //         width: 40,
-  //         child: GestureDetector(
-  //           onTap: () {
-  //             Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //               return Menu();
-  //             }));
-  //             print('Menu ${title[index]} di kLik');
-  //           },
-  //           child: Column(
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             children: [
-  //               SizedBox(
-  //                 width: 40,
-  //                 height: 40,
-  //                 child: Image.asset(
-  //                   'assets/logo/${icon[index]}',
-  //                   width: 40,
-  //                   height: 40,
-  //                 ),
-  //               ),
-  //               SizedBox(
-  //                 width: 70,
-  //                 child: Text(
-  //                   title[index],
-  //                   textAlign: TextAlign.center,
-  //                   style: TextStyle(fontSize: 13),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //   },
-  // );
 
   Menu({Key? key}) : super(key: key);
 
@@ -136,6 +86,16 @@ class Menu extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (BuildContext context) {
                     return const ProdiScreen();
+                  },
+                ),
+              );
+            }
+            else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const JurusanScreen();
                   },
                 ),
               );
