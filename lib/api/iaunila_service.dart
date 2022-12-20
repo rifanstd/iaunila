@@ -368,6 +368,48 @@ class IaunilaService {
     }
   }
 
+  static Future<List<PenelitianModel>> getAllPenelitian(int page) async {
+    getToken();
+
+    var url =
+        'http://onedata.unila.ac.id/api/live/0.1/penelitian/daftar?page=$page&limit=100&sort_by=DESC';
+
+    var header = {"Authorization": "bearer${token}"};
+
+    final response = await http.get(
+      headers: header,
+      Uri.parse(url),
+    );
+
+    print(response.statusCode.toString());
+
+    if (response.statusCode == 202) {
+      print("berhasil koneksi");
+      final Map<String, dynamic> json = jsonDecode(response.body);
+
+      if (json['response']['data'] != null) {
+        print("data penelitian tidak null");
+        print(json['response']['data'].length);
+        final penelitians = <PenelitianModel>[];
+        json['response']['data'].forEach((v) {
+          penelitians.add(PenelitianModel.fromJson(v));
+        });
+
+        // Testing
+        for (int i = 0; i < penelitians.length; i++) {
+          print(i.toString() + ' ' + penelitians[i].judul_penelitian.toString());
+        }
+
+        return penelitians;
+      } else {
+        print("Data buku ajar Null");
+        return [];
+      }
+    } else {
+      throw ('Gagal terkoneksi');
+    }
+  }
+
   static Future<void> getToken() async {
     const String username = 'mhs-testing';
     const String password = 'unilajaya';
