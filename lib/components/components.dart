@@ -8,3 +8,4 @@ export 'mahasiswa_list.dart';
 export 'prodi_list.dart';
 export 'jurusan_list.dart';
 export 'fakultas_list.dart';
+export 'alumni_list.dart';
