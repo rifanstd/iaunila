@@ -9,8 +9,8 @@ class Menu extends StatelessWidget {
     'jurusan.png',
     'fakultas.png',
     'alumni.png',
-    'buku_ajar.png',
     'mata_kuliah.png',
+    'buku_ajar.png',
     'peserta_kelas.png',
     'buku_referensi.png',
     'penelitian.png'
@@ -22,8 +22,8 @@ class Menu extends StatelessWidget {
     'Jurusan',
     'Fakultas',
     'Alumni',
-    'Buku Ajar',
     'Mata Kuliah',
+    'Buku Ajar',
     'Peserta Kelas',
     'Buku Referensi',
     'Penelitian'
@@ -146,6 +146,16 @@ class Menu extends StatelessWidget {
         MaterialPageRoute(
           builder: (BuildContext context) {
             return const AlumniScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 5) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const MataKuliahScreen();
           },
         ),
       );
