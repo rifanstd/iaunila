@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/screens/jurusan_screen.dart';
+import 'package:iaunila/screens/penelitian_screen.dart';
 import 'package:iaunila/screens/screens.dart';
 
 class Menu extends StatelessWidget {
@@ -171,7 +172,7 @@ class Menu extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return const MataKuliahScreen();
+            return const PenelitianScreen();
           },
         ),
       );
