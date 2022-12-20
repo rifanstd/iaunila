@@ -85,12 +85,12 @@ class _AlumniListState extends State<AlumniList> {
       child: LiveSearchWidget(
         query: query,
         hintText: 'Cari Berdasarkan NPM atau Nama',
-        onChanged: searchMahasiswa,
+        onChanged: searchAlumni,
       ),
     );
   }
 
-  void searchMahasiswa(String query) {
+  void searchAlumni(String query) {
     final newAlumniList = widget.alumnis.where((alumni) {
       final namaLower = alumni.nama_alumni.toString().toLowerCase();
       final npm = alumni.npm.toString().toLowerCase();

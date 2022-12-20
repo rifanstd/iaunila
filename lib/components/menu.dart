@@ -11,8 +11,6 @@ class Menu extends StatelessWidget {
     'alumni.png',
     'mata_kuliah.png',
     'buku_ajar.png',
-    'peserta_kelas.png',
-    'buku_referensi.png',
     'penelitian.png'
   ];
 
@@ -24,8 +22,6 @@ class Menu extends StatelessWidget {
     'Alumni',
     'Mata Kuliah',
     'Buku Ajar',
-    'Peserta Kelas',
-    'Buku Referensi',
     'Penelitian'
   ];
 
@@ -151,6 +147,26 @@ class Menu extends StatelessWidget {
       );
     }
     else if (index == 5) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const MataKuliahScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 6) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const BukuAjarScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 7) {
       Navigator.push(
         context,
         MaterialPageRoute(

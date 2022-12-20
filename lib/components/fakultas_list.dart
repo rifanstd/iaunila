@@ -77,12 +77,12 @@ class _FakultasListState extends State<FakultasList> {
       child: LiveSearchWidget(
         query: query,
         hintText: 'Pencarian Berdasarkan Nama Fakultas',
-        onChanged: searchProdi,
+        onChanged: searchFakultas,
       ),
     );
   }
 
-  void searchProdi(String query) {
+  void searchFakultas(String query) {
     final newFakultasList = widget.faculties.where((fakultas) {
       final namaLower = fakultas.nm_lemb.toString().toLowerCase();
       final searchLower = query.toString().toLowerCase();
