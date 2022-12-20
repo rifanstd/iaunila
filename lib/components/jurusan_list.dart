@@ -76,7 +76,7 @@ class _JurusanListState extends State<JurusanList> {
       ),
       child: LiveSearchWidget(
         query: query,
-        hintText: 'Cari Berdasarkan Nama Jurusan',
+        hintText: 'Pencarian Berdasarkan Nama Jurusan',
         onChanged: searchProdi,
       ),
     );
