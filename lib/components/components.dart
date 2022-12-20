@@ -10,3 +10,4 @@ export 'jurusan_list.dart';
 export 'fakultas_list.dart';
 export 'alumni_list.dart';
 export 'matakuliah_list.dart';
+export 'buku_ajar_list.dart';

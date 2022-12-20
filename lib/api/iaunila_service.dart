@@ -330,6 +330,44 @@ class IaunilaService {
     }
   }
 
+  static Future<List<BukuAjarModel>> getAllBukuAjar(int page) async {
+    getToken();
+
+    var url =
+        'http://onedata.unila.ac.id/api/live/0.1/buku_ajar/daftar?page=$page&limit=50&sort_by=DESC';
+
+    var header = {"Authorization": "bearer${token}"};
+
+    final response = await http.get(
+      headers: header,
+      Uri.parse(url),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> json = jsonDecode(response.body);
+
+      if (json['data'] != null) {
+        print("data buku tidak null");
+        final books = <BukuAjarModel>[];
+        json['data'].forEach((v) {
+          books.add(BukuAjarModel.fromJson(v));
+        });
+
+        // Testing
+        for (int i = 0; i < books.length; i++) {
+          print(i.toString() + ' ' + books[i].judul_buku.toString());
+        }
+
+        return books;
+      } else {
+        print("Data buku ajar Null");
+        return [];
+      }
+    } else {
+      throw ('Gagal terkoneksi');
+    }
+  }
+
   static Future<void> getToken() async {
     const String username = 'mhs-testing';
     const String password = 'unilajaya';
