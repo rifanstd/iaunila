@@ -4,3 +4,4 @@ export 'mahasiswa_screen.dart';
 export 'prodi_screen.dart';
 export 'fakultas_screen.dart';
 export 'alumni_screen.dart';
+export 'matakuliah_screen.dart';
