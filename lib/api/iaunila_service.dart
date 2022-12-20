@@ -210,6 +210,45 @@ class IaunilaService {
     }
   }
 
+  static Future<List<FakultasModel>> getAllFakultas() async {
+    getToken();
+
+    var url = 'http://onedata.unila.ac.id/api/live/0.1/lembaga/daftar_lembaga';
+
+    var header = {"Authorization": "bearer$token"};
+
+    final response = await http.get(
+      headers: header,
+      Uri.parse(url),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> json = jsonDecode(response.body);
+
+      if (json['data'] != null) {
+        print("data fakultas tidak null");
+        final faculties = <FakultasModel>[];
+        json['data'].forEach((v) {
+          if(v['id_jns_sms'] == '1') {
+            faculties.add(FakultasModel.fromJson(v));
+          }
+        });
+
+        // Testing
+        for (int i = 0; i < faculties.length; i++) {
+          print(i.toString() + ' ' + faculties[i].nm_lemb.toString());
+        }
+
+        return faculties;
+      } else {
+        print("Data fakultas Null");
+        return [];
+      }
+    } else {
+      throw ('Gagal terkoneksi');
+    }
+  }
+
   static Future<void> getToken() async {
     const String username = 'mhs-testing';
     const String password = 'unilajaya';

@@ -7,3 +7,4 @@ export 'live_search/live_search_widget.dart';
 export 'mahasiswa_list.dart';
 export 'prodi_list.dart';
 export 'jurusan_list.dart';
+export 'fakultas_list.dart';
