@@ -11,7 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   int stopper = 1;
 
   @override
@@ -44,19 +43,32 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 29, right: 29, bottom: 7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Lulusan Terbaik Tahun Ini",
-                  style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Lulusan Terbaik Tahun Ini",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Indikator : IPK Tertinggi (Ilmu Komputer)",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
                 ),
-                Text(
-                  "Indikator : IPK Tertinggi (Ilmu Komputer)",
-                  style: TextStyle(fontSize: 14),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                    });
+                  },
+                  child: const Icon(Icons.refresh),
+                  style: ElevatedButton.styleFrom(shape: CircleBorder(), backgroundColor: Colors.blue, foregroundColor: Colors.white),
                 ),
               ],
             ),

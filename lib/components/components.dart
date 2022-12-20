@@ -12,3 +12,5 @@ export 'alumni_list.dart';
 export 'matakuliah_list.dart';
 export 'buku_ajar_list.dart';
 export 'penelitian_list.dart';
+export 'about_description.dart';
+export 'contact.dart';
