@@ -52,7 +52,7 @@ class _ProdiListState extends State<ProdiList> {
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       child: ListTile(
-        leading: Image.asset('assets/mahasiswa_icon/mahasiswa.png'),
+        leading: Image.asset('assets/logo/prodi.png'),
         title: Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iaunila/api/iaunila_service.dart';
 import 'package:iaunila/screens/jurusan_screen.dart';
 import 'package:iaunila/screens/screens.dart';
 
@@ -70,36 +69,7 @@ class Menu extends StatelessWidget {
         width: 40,
         child: GestureDetector(
           onTap: () {
-            if (index == 0) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const MahasiswaScreen();
-                  },
-                ),
-              );
-            }
-            else if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const ProdiScreen();
-                  },
-                ),
-              );
-            }
-            else if (index == 2) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const JurusanScreen();
-                  },
-                ),
-              );
-            }
+            goToSelectedMenu(context, index);
             print('Menu ${title[index]} di kLik');
           },
           child: Column(
@@ -127,5 +97,48 @@ class Menu extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void goToSelectedMenu(BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const MahasiswaScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const ProdiScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const JurusanScreen();
+          },
+        ),
+      );
+    }
+    else if (index == 3){
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return const FakultasScreen();
+          },
+        ),
+      );
+    }
   }
 }

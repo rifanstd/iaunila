@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
 import 'components.dart';
 
-class JurusanList extends StatefulWidget {
-  final List<JurusanModel> jurusans;
-  JurusanList({Key? key, required this.jurusans}) : super(key: key);
+class FakultasList extends StatefulWidget {
+  final List<FakultasModel> faculties;
+  FakultasList({Key? key, required this.faculties}) : super(key: key);
 
   @override
-  State<JurusanList> createState() => _JurusanListState();
+  State<FakultasList> createState() => _FakultasListState();
 }
 
-class _JurusanListState extends State<JurusanList> {
-  late List<JurusanModel> jurusanList;
+class _FakultasListState extends State<FakultasList> {
+  late List<FakultasModel> fakultasList;
   String query = '';
 
   @override
   void initState() {
     super.initState();
-    jurusanList = widget.jurusans;
+    fakultasList = widget.faculties;
   }
 
   @override
@@ -34,10 +34,10 @@ class _JurusanListState extends State<JurusanList> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: jurusanList.length,
+              itemCount: fakultasList.length,
               itemBuilder: (context, index) {
-                final jurusan = jurusanList[index];
-                return listItem(jurusan);
+                final fakultas = fakultasList[index];
+                return listItem(fakultas);
               },
               scrollDirection: Axis.vertical,
             ),
@@ -47,21 +47,21 @@ class _JurusanListState extends State<JurusanList> {
     );
   }
 
-  Widget listItem(JurusanModel jurusan) {
+  Widget listItem(FakultasModel fakultas) {
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       child: ListTile(
-        leading: Image.asset('assets/logo/jurusan.png'),
+        leading: Image.asset('assets/logo/fakultas.png'),
         title: Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
-            jurusan.nm_lemb.toString(),
+            fakultas.nm_lemb.toString(),
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           ),
         ),
         subtitle: Text(
-            "Akreditasi : ${jurusan.stat_prodi.toString()}"),
+            "Jenis : ${fakultas.nm_jns_sms.toString()}"),
         contentPadding: const EdgeInsets.all(20),
       ),
     );
@@ -76,15 +76,15 @@ class _JurusanListState extends State<JurusanList> {
       ),
       child: LiveSearchWidget(
         query: query,
-        hintText: 'Pencarian Berdasarkan Nama Jurusan',
+        hintText: 'Pencarian Berdasarkan Nama Fakultas',
         onChanged: searchProdi,
       ),
     );
   }
 
   void searchProdi(String query) {
-    final newJurusanList = widget.jurusans.where((jurusan) {
-      final namaLower = jurusan.nm_lemb.toString().toLowerCase();
+    final newFakultasList = widget.faculties.where((fakultas) {
+      final namaLower = fakultas.nm_lemb.toString().toLowerCase();
       final searchLower = query.toString().toLowerCase();
 
       return namaLower.contains(searchLower);
@@ -92,7 +92,7 @@ class _JurusanListState extends State<JurusanList> {
 
     setState(() {
       this.query = query;
-      this.jurusanList = newJurusanList;
+      this.fakultasList = newFakultasList;
     });
   }
 }
