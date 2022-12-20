@@ -75,7 +75,7 @@ class _MahasiswaListState extends State<MahasiswaList> {
         bottomLeft: Radius.circular(10),
         bottomRight: Radius.circular(10),
       ),
-      child: MahasiswaSearchWidget(
+      child: LiveSearchWidget(
         query: query,
         hintText: 'Cari Berdasarkan NPM atau Nama',
         onChanged: searchMahasiswa,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iaunila/components/prodi_list.dart';
 import 'package:iaunila/models/models.dart';
 import 'package:iaunila/components/components.dart';
 import 'package:iaunila/api/iaunila_service.dart';

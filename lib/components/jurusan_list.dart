@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
 import 'components.dart';
 
-class ProdiList extends StatefulWidget {
-  final List<ProdiModel> prodis;
-  ProdiList({Key? key, required this.prodis}) : super(key: key);
+class JurusanList extends StatefulWidget {
+  final List<JurusanModel> jurusans;
+  JurusanList({Key? key, required this.jurusans}) : super(key: key);
 
   @override
-  State<ProdiList> createState() => _ProdiListState();
+  State<JurusanList> createState() => _JurusanListState();
 }
 
-class _ProdiListState extends State<ProdiList> {
-  late List<ProdiModel> prodiList;
+class _JurusanListState extends State<JurusanList> {
+  late List<JurusanModel> jurusanList;
   String query = '';
 
   @override
   void initState() {
     super.initState();
-    prodiList = widget.prodis;
+    jurusanList = widget.jurusans;
   }
 
   @override
@@ -34,10 +34,10 @@ class _ProdiListState extends State<ProdiList> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: prodiList.length,
+              itemCount: jurusanList.length,
               itemBuilder: (context, index) {
-                final prodi = prodiList[index];
-                return listItem(prodi);
+                final jurusan = jurusanList[index];
+                return listItem(jurusan);
               },
               scrollDirection: Axis.vertical,
             ),
@@ -47,7 +47,7 @@ class _ProdiListState extends State<ProdiList> {
     );
   }
 
-  Widget listItem(ProdiModel prodi) {
+  Widget listItem(JurusanModel jurusan) {
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
@@ -56,12 +56,12 @@ class _ProdiListState extends State<ProdiList> {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 5),
           child: Text(
-            prodi.nama_prodi.toString(),
+            jurusan.nm_lemb.toString(),
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           ),
         ),
         subtitle: Text(
-            "Akreditasi : ${prodi.nama_akreditasi.toString()}"),
+            "Akreditasi : ${jurusan.stat_prodi.toString()}"),
         contentPadding: const EdgeInsets.all(20),
       ),
     );
@@ -76,15 +76,15 @@ class _ProdiListState extends State<ProdiList> {
       ),
       child: LiveSearchWidget(
         query: query,
-        hintText: 'Cari Berdasarkan Nama Program Studi',
+        hintText: 'Cari Berdasarkan Nama Jurusan',
         onChanged: searchProdi,
       ),
     );
   }
 
   void searchProdi(String query) {
-    final newProdiList = widget.prodis.where((prodi) {
-      final namaLower = prodi.nama_prodi.toString().toLowerCase();
+    final newJurusanList = widget.jurusans.where((jurusan) {
+      final namaLower = jurusan.nm_lemb.toString().toLowerCase();
       final searchLower = query.toString().toLowerCase();
 
       return namaLower.contains(searchLower);
@@ -92,7 +92,7 @@ class _ProdiListState extends State<ProdiList> {
 
     setState(() {
       this.query = query;
-      this.prodiList = newProdiList;
+      this.jurusanList = newJurusanList;
     });
   }
 }
