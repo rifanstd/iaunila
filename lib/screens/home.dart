@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'screens.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  static const String keyIndexSelected = 'selectedIndex';
 
   static List<Widget> pages = [
     MainScreen(),
@@ -19,11 +21,13 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    getSavedScreen();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: IndexedStack(
         index: _selectedIndex,
         children: pages,
@@ -35,6 +39,7 @@ class _HomeState extends State<Home> {
           setState(() {
             _selectedIndex = index;
           });
+          saveCurrentScreen();
         },
         items: const [
           BottomNavigationBarItem(
@@ -42,11 +47,29 @@ class _HomeState extends State<Home> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.info_outline),
             label: 'About',
           )
         ],
       ),
     );
+  }
+
+  void saveCurrentScreen() async {
+    final prefs = await SharedPreferences.getInstance();
+    print("Screen Saved!!!");
+    prefs.setInt(keyIndexSelected, _selectedIndex);
+  }
+
+  void getSavedScreen() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(keyIndexSelected)) {
+      setState(() {
+        final index = prefs.getInt(keyIndexSelected);
+        if (index != null) {
+          _selectedIndex = index;
+        }
+      });
+    }
   }
 }
