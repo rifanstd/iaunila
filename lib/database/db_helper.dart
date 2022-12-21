@@ -72,14 +72,15 @@ class DBHelper {
 
     List<BukuAjarModel> books = [];
 
-        books.clear();
-        result.forEach((book) {
-          books.add(BukuAjarModel.fromMap(book));
-      });
+    books.clear();
 
-      return books;
+    // memasukkan data kedalam model
+    // berasarkan data terbaru
+    for (int i = result.length-1; i >= 0; i--){
+      books.add(BukuAjarModel.fromMap(result[i]));
+    }
 
-
+    return books;
   }
 
   // delete buku ajar from database
@@ -111,7 +112,7 @@ class DBHelper {
       whereArgs: [_idBukuAjar],
     );
 
-    if (maps.isNotEmpty){
+    if (maps.isNotEmpty) {
       return BukuAjarModel.fromMap(maps.first);
     }
 

@@ -32,7 +32,7 @@ class _BukuAjarScreenState extends State<BukuAjarScreen> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 15),
-            child: IconButton(icon: const Icon(Icons.bookmarks_sharp, size: 30), onPressed: () {
+            child: IconButton(icon: const Icon(Icons.bookmarks_sharp, size: 25), onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<void>(

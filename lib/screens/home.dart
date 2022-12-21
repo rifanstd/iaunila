@@ -15,7 +15,8 @@ class _HomeState extends State<Home> {
 
   static List<Widget> pages = [
     MainScreen(),
-    AboutScreen()
+    AboutScreen(),
+    SupportDeveloperScreen(),
   ];
 
   @override
@@ -49,6 +50,10 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
             label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.emoji_people),
+            label: 'Support Developer',
           ),
         ],
       ),

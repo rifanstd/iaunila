@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Contact extends StatelessWidget {
-  const Contact({Key? key}) : super(key: key);
+class ContactForSupport extends StatelessWidget {
+  const ContactForSupport({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +9,9 @@ class Contact extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Contact",
+          "Contact for Support",
           style: TextStyle(
-            fontSize: 18  ,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
@@ -21,25 +21,25 @@ class Contact extends StatelessWidget {
         ),
         Column(
           children: [
-            mediaSocial('assets/logo/facebook.png', '@OfficialUnila'),
+            mediaSocial('assets/logo/facebook.png', 'Rifan Setiadi'),
             const SizedBox(
               height: 8,
             ),
-            mediaSocial('assets/logo/instagram.png', '@official_unila'),
+            mediaSocial('assets/logo/instagram.png', '@rifanstd'),
             const SizedBox(
               height: 8,
             ),
-            mediaSocial('assets/logo/twitter.png', '@official_unila'),
+            mediaSocial('assets/logo/twitter.png', '@rifanstd'),
             const SizedBox(
               height: 8,
             ),
-            mediaSocial('assets/logo/mail.png', '@humas@kpa.unila.ac.id'),
+            mediaSocial('assets/logo/mail.png', '@rifan.setiadi2019@students.unila.ac.id'),
           ],
         ),
       ],
     );
   }
-
+  
   Widget mediaSocial(String imgUrl, String title) {
     return InkWell(
       onTap: () {},

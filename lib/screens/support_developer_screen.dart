@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/components/components.dart';
 
-class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key? key}) : super(key: key);
+class SupportDeveloperScreen extends StatelessWidget {
+  const SupportDeveloperScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AboutScreen extends StatelessWidget {
                   SizedBox(
                     height: 150,
                     width: 150,
-                    child: Image.asset('assets/logo/icon_unila.png'),
+                    child: Image.asset('assets/logo/support.png'),
                   ),
                 ],
               ),
@@ -38,13 +38,13 @@ class AboutScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
-                  AboutDescription(),
+                  GiveUsSupport(),
                   SizedBox(
                     height: 16,
                   ),
-                  Contact(),
+                  ContactForSupport(),
                   SizedBox(
                     height: 16,
                   ),
