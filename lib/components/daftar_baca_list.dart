@@ -27,36 +27,21 @@ class _DaftarBacaListState extends State<DaftarBacaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Daftar Baca', style: TextStyle(color: Colors.black),),
-        foregroundColor: Colors.black,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
+        appBar: AppBar(
+          title: const Text(
+            'Daftar Baca',
+            style: TextStyle(color: Colors.black),
+          ),
+          foregroundColor: Colors.black,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Container(
-            //   padding: EdgeInsets.only(top: 50, left: 20),
-            //   color: Colors.blue,
-            //   width: double.maxFinite,
-            //   child: Row(
-            //     children: const [
-            //       Icon(Icons.menu_book_outlined, color: Colors.white,),
-            //       SizedBox(width: 8,),
-            //       Text(
-            //         "Daftar Baca",
-            //         style: TextStyle(
-            //             fontSize: 20,
-            //             fontWeight: FontWeight.bold,
-            //             color: Colors.white),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             buildSearch(),
             Container(
               decoration: BoxDecoration(
@@ -64,19 +49,23 @@ class _DaftarBacaListState extends State<DaftarBacaList> {
               ),
               height: 10,
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: bookList.length,
-                itemBuilder: (context, index) {
-                  final book = bookList[index];
-                  return DaftarBacaListItem(book: book);
-                },
-                scrollDirection: Axis.vertical,
-              ),
-            ),
+            (bookList.length == 0
+                ? Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: const Text("Belum ada buku ajar yang ditambahkan"),
+                  )
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: bookList.length,
+                      itemBuilder: (context, index) {
+                        final book = bookList[index];
+                        return DaftarBacaListItem(book: book);
+                      },
+                      scrollDirection: Axis.vertical,
+                    ),
+                  )),
           ],
-        ),
-    );
+        ));
   }
 
   Widget buildSearch() {
