@@ -1,14 +1,14 @@
-# iaunila
+# Informasi Akademik Universitas Lampung (IAUNILA)
 
-A new Flutter project.
+Informasi Akademik Universitas Lampung (IAUNILA) adalah aplikasi yang memberikan informasi terkait Akademik Universitas Lampung. Informasi yang ditampilkan pada aplikasi ini berupa informasi Mahasiswa, Program Studi, Jurusan, Fakultas, Alumni, Mata Kuliah, Buku Ajar serta Penelitian.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## About
+Projek ini berangkat dari Projek Akhir Mata Kuliah Mobile Lanjut di Jurusan Ilmu Komputer Universitas Lampung
 
-A few resources to get you started if this is your first Flutter project:
+Kritik dan Saran dapat disampaikan melalui media sosial di bawah :
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- Facebook : https://web.facebook.com/rifan.setiadi.1
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
