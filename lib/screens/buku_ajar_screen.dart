@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
 import 'package:iaunila/components/components.dart';
+import 'package:iaunila/screens/daftar_baca_screen.dart';
 
 import '../api/iaunila_service.dart';
 
@@ -19,12 +20,30 @@ class _BukuAjarScreenState extends State<BukuAjarScreen> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
-        title: const Text("Buku Ajar", style: TextStyle(color: Colors.black),),
+        title: const Text(
+          "Buku Ajar",
+          style: TextStyle(color: Colors.black),
+        ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 15),
+            child: IconButton(icon: Icon(Icons.bookmarks_sharp, size: 30), onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
+                    return DaftarBacaScreen();
+                  }
+                ),
+              );
+            }),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -38,7 +57,7 @@ class _BukuAjarScreenState extends State<BukuAjarScreen> {
                     if (page == 1) {
                       const snackBar = SnackBar(
                           content:
-                          Text("Anda berada pada halaman paling awal"));
+                              Text("Anda berada pada halaman paling awal"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {
                       setState(() {
@@ -57,7 +76,7 @@ class _BukuAjarScreenState extends State<BukuAjarScreen> {
                     if (page == 11) {
                       const snackBar = SnackBar(
                           content:
-                          Text("Anda berada pada halaman paling akhir"));
+                              Text("Anda berada pada halaman paling akhir"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {
                       setState(() {

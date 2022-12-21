@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:iaunila/components/components.dart';
+import 'package:iaunila/database/db_helper.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  DBHelper dbHelper = DBHelper();
   int stopper = 1;
 
   @override
@@ -67,8 +69,8 @@ class _MainScreenState extends State<MainScreen> {
                     setState(() {
                     });
                   },
-                  child: const Icon(Icons.refresh),
                   style: ElevatedButton.styleFrom(shape: CircleBorder(), backgroundColor: Colors.blue, foregroundColor: Colors.white),
+                  child: const Icon(Icons.refresh),
                 ),
               ],
             ),
