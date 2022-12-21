@@ -9,3 +9,4 @@ export 'buku_ajar_screen.dart';
 export 'main_screen.dart';
 export 'about_screen.dart';
 export 'daftar_baca_screen.dart';
+export 'support_developer_screen.dart';
