@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.15
   sqflite: ^2.2.2
   path: ^1.8.2
+  flutter_launcher_icons: ^0.11.0
 
 
 dev_dependencies:
@@ -53,6 +54,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon_launcher/iaunila_launcher_icon.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -70,6 +77,7 @@ flutter:
     - assets/splash_screen/
     - assets/logo/
     - assets/mahasiswa_icon/
+    - assets/icon_launcher/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
