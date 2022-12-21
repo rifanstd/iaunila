@@ -9,8 +9,6 @@ Projek ini berangkat dari Projek Akhir Mata Kuliah Mobile Lanjut di Jurusan Ilmu
 Kritik dan Saran dapat disampaikan melalui media sosial di bawah :
 
 - Facebook : https://web.facebook.com/rifan.setiadi.1
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Instagram : https://www.instagram.com/rifanstd/
+- Email : rifan.setiadi2019@students.unila.ac.id
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
