@@ -12,3 +12,7 @@ Kritik dan Saran dapat disampaikan melalui media sosial di bawah :
 - Instagram : https://www.instagram.com/rifanstd/
 - Email : rifan.setiadi2019@students.unila.ac.id
 
+## User Interface
+- Home : ![image](https://user-images.githubusercontent.com/49912837/208851512-b6effabb-d3dc-4cb6-a0fc-87575821f7f2.png)
+
+
