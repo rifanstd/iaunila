@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:iaunila/components/components.dart';
+import 'package:iaunila/database/db_helper.dart';
 import 'package:iaunila/models/models.dart';
 
 class BukuAjarList extends StatefulWidget {
@@ -13,6 +14,7 @@ class BukuAjarList extends StatefulWidget {
 
 class _BukuAjarListState extends State<BukuAjarList> {
   late List<BukuAjarModel> bookList;
+
   String query = '';
 
   @override
@@ -38,36 +40,12 @@ class _BukuAjarListState extends State<BukuAjarList> {
               itemCount: bookList.length,
               itemBuilder: (context, index) {
                 final book = bookList[index];
-                return listItem(book);
+                return BukuAjarListItem(book: book);
               },
               scrollDirection: Axis.vertical,
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget listItem(BukuAjarModel book) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-      child: ListTile(
-        leading: Image.asset('assets/logo/buku_ajar.png'),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            book.judul_buku.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-          ),
-        ),
-        subtitle: Text("Penerbit : ${book.penerbit.toString()}\n"
-            "Tanggal Terbit : ${book.tanggal_terbit.toString()}"),
-        contentPadding: const EdgeInsets.all(20),
-        trailing: IconButton(
-          icon: const Icon(Icons.favorite_border_outlined, color: Colors.red,),
-          onPressed: () {},
-        ),
       ),
     );
   }

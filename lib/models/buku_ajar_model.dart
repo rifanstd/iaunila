@@ -26,4 +26,28 @@ class BukuAjarModel {
     waktu_data_ditambahkan = json['waktu_data_ditambahkan'];
     terakhir_diubah = json['terakhir_diubah'];
   }
+
+  BukuAjarModel.fromMap(Map<String, dynamic> map) {
+    id_buku_ajar = map['id_buku_ajar'];
+    judul_buku = map['judul_buku'];
+    isbn = map['isbn'];
+    tanggal_terbit = map['tanggal_terbit'];
+    penerbit = map['penerbit'];
+    waktu_data_ditambahkan = map['waktu_data_ditambahkan'];
+    terakhir_diubah = map['terakhir_diubah'];
+  }
+
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{};
+
+    map['id_buku_ajar'] = id_buku_ajar;
+    map['judul_buku'] = judul_buku;
+    map['isbn'] = isbn;
+    map['tanggal_terbit'] = tanggal_terbit;
+    map['penerbit'] = penerbit;
+    map['waktu_data_ditambahkan'] = waktu_data_ditambahkan;
+    map['terakhir_diubah'] = terakhir_diubah;
+
+    return map;
+  }
 }
