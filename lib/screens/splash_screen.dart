@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           AnimatedSplashScreen(
-            duration: 3000,
+            duration: 100,
             backgroundColor: Colors.transparent,
             nextScreen: Home(),
             splashTransition: SplashTransition.sizeTransition,
