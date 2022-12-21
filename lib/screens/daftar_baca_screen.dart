@@ -31,17 +31,4 @@ class _DaftarBacaScreenState extends State<DaftarBacaScreen> {
       },
     );
   }
-
-  // Future<List<BukuAjarModel>> _getAllBukuAjar() async {
-  //   List<BukuAjarModel> books = [];
-  //   var list = await dbHelper.getAllBukuAjar();
-  //   setState(() {
-  //     books.clear();
-  //     list!.forEach((book) {
-  //       books.add(BukuAjarModel.fromMap(book));
-  //     });
-  //   });
-  //
-  //   return books;
-  // }
 }
