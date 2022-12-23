@@ -12,3 +12,4 @@ export 'daftar_baca_screen.dart';
 export 'support_developer_screen.dart';
 export 'pilih_prodi_screen.dart';
 export 'detail_mahasiswa_screen.dart';
+export 'detail_prodi_screen.dart';

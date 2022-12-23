@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
+import 'package:iaunila/screens/screens.dart';
 import 'components.dart';
 
 class ProdiList extends StatefulWidget {
@@ -48,26 +49,32 @@ class _ProdiListState extends State<ProdiList> {
   }
 
   Widget listItem(ProdiModel prodi) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.blueAccent,
-        ),
-        borderRadius: BorderRadius.circular(30.0), //<-- SEE HERE
-      ),
-      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-      child: ListTile(
-        leading: Image.asset('assets/logo/prodi.png'),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            prodi.nama_prodi.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+          return DetailProdiScreen(prodi: prodi);
+        }));
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: Colors.blueAccent,
           ),
+          borderRadius: BorderRadius.circular(30.0), //<-- SEE HERE
         ),
-        subtitle: Text(
-            "Akreditasi : ${prodi.nama_akreditasi.toString()}"),
-        contentPadding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+        child: ListTile(
+          leading: Image.asset('assets/logo/prodi.png'),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              prodi.nama_prodi.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            ),
+          ),
+          subtitle: Text("Akreditasi : ${prodi.nama_akreditasi.toString()}"),
+          contentPadding: const EdgeInsets.all(20),
+        ),
       ),
     );
   }
