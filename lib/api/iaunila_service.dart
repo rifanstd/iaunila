@@ -5,76 +5,77 @@ import 'package:iaunila/models/models.dart';
 class IaunilaService {
   static String? token;
 
-  static Future<List<MahasiswaModel>> getAllMahasiswa(int page) async {
+  static Future<List<MahasiswaModel>> getAllMahasiswa(String idProdi) async {
     getToken();
+    int page = 1;
+    final mahasiswas = <MahasiswaModel>[];
 
-    var url =
-        'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_mahasiswa?page=$page&limit=50&sort_by=ASC&id_prodi=54BBD27B-2376-4CAE-9951-76EF54BD2CA2';
+    while (true) {
+      var url = 'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_mahasiswa?page=$page&limit=50&sort_by=ASC&id_prodi=$idProdi';
+      var header = {"Authorization": "bearer$token"};
+      final response = await http.get(
+        headers: header,
+        Uri.parse(url),
+      );
 
-    var header = {"Authorization": "bearer${token}"};
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
 
-    final response = await http.get(
-      headers: header,
-      Uri.parse(url),
-    );
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> json = jsonDecode(response.body);
-
-      if (json['data'] != null) {
-        print("data tidak null");
-        final mahasiswas = <MahasiswaModel>[];
-        json['data'].forEach((v) {
-          mahasiswas.add(MahasiswaModel.fromJson(v));
-        });
-
-        // Testing
-        for (int i = 0; i < mahasiswas.length; i++) {
-          print(i.toString() + ' ' + mahasiswas[i].nama_mahasiswa.toString());
+        if (json['data'] != null) {
+          print("Data mahasiswa tidak null");
+          json['data'].forEach((v) {
+            mahasiswas.add(MahasiswaModel.fromJson(v));
+          });
+        } else {
+          print("Data mahasiswa null");
+          break;
         }
-
-        return mahasiswas;
       } else {
-        print("Data Null");
-        return [];
+        throw ('Gagal terkoneksi');
       }
-    } else {
-      throw ('Gagal terkoneksi');
+      print(page);
+      page++;
     }
+
+    return mahasiswas;
   }
 
-  static Future<List<ProdiModel>> getAllProdi(int page) async {
+  static Future<List<ProdiModel>> getAllProdi() async {
     getToken();
+    int page = 1;
+    final prodis = <ProdiModel>[];
 
-    var header = {"Authorization": "bearer${token}"};
+    while (true) {
+      var url =
+          'http://onedata.unila.ac.id/api/live/0.1/lembaga/profil_prodi/daftar?page=$page&limit=50&sort_by=DESC';
 
-    var url =
-        'http://onedata.unila.ac.id/api/live/0.1/lembaga/profil_prodi/daftar?page=${page.toString()}&limit=50&sort_by=DESC';
+      var header = {"Authorization": "bearer$token"};
 
-    var response = await http.get(
-      headers: header,
-      Uri.parse(url),
-    );
+      var response = await http.get(
+        headers: header,
+        Uri.parse(url),
+      );
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
 
-      if (json['data'] != null) {
-        print("Data ada");
-        final prodis = <ProdiModel>[];
+        if (json['data'].length != 0) {
+          print("Data prodi tidak null");
+          json['data'].forEach((v) {
+            prodis.add(ProdiModel.fromJson(v));
+          });
 
-        json['data'].forEach((v) {
-          prodis.add(ProdiModel.fromJson(v));
-        });
-
-        return prodis;
+        } else {
+          print("Data prodi null");
+          break;
+        }
       } else {
-        print("Data tidak ada");
-        return [];
+        throw ('Connection Gagal');
       }
-    } else {
-      throw ('Connection Gagal');
+      page++;
     }
+
+    return prodis;
   }
 
   static Future<List<DetailProdiModel>> getDetailProdi(String id_prodi) async {
