@@ -102,7 +102,7 @@ class Menu extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return const MahasiswaScreen();
+            return const PilihProdiScreen();
           },
         ),
       );

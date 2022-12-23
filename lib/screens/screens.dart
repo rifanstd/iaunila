@@ -10,3 +10,5 @@ export 'main_screen.dart';
 export 'about_screen.dart';
 export 'daftar_baca_screen.dart';
 export 'support_developer_screen.dart';
+export 'pilih_prodi_screen.dart';
+export 'detail_mahasiswa_screen.dart';

@@ -1,32 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:iaunila/components/components.dart';
 import 'package:iaunila/models/models.dart';
-import 'package:iaunila/screens/detail_mahasiswa_screen.dart';
+import 'package:iaunila/screens/mahasiswa_screen.dart';
+import 'components.dart';
 
-class MahasiswaList extends StatefulWidget {
-  final List<MahasiswaModel> mahasiswas;
-  MahasiswaList({Key? key, required this.mahasiswas}) : super(key: key);
+class PilihProdiList extends StatefulWidget {
+  final List<ProdiModel> prodis;
+  const PilihProdiList({Key? key, required this.prodis}) : super(key: key);
 
   @override
-  State<MahasiswaList> createState() => _MahasiswaListState();
+  State<PilihProdiList> createState() => _PilihProdiListState();
 }
 
-class _MahasiswaListState extends State<MahasiswaList> {
-  late List<MahasiswaModel> mahasiswaList;
+class _PilihProdiListState extends State<PilihProdiList> {
+  late List<ProdiModel> prodiList;
   String query = '';
 
   @override
   void initState() {
     super.initState();
-    mahasiswaList = widget.mahasiswas;
+    prodiList = widget.prodis;
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 16, left: 20),
+            child: Text(
+              "Pilih Prodi",
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  color: Colors.blueAccent),
+              textAlign: TextAlign.start,
+            ),
+          ),
           buildSearch(),
           Container(
             decoration: BoxDecoration(
@@ -36,10 +47,10 @@ class _MahasiswaListState extends State<MahasiswaList> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: mahasiswaList.length,
+              itemCount: prodiList.length,
               itemBuilder: (context, index) {
-                final mahasiswa = mahasiswaList[index];
-                return listItem(mahasiswa);
+                final prodi = prodiList[index];
+                return listItem(prodi);
               },
               scrollDirection: Axis.vertical,
             ),
@@ -49,14 +60,14 @@ class _MahasiswaListState extends State<MahasiswaList> {
     );
   }
 
-  Widget listItem(MahasiswaModel mahasiswa) {
+  Widget listItem(ProdiModel prodi) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return DetailMahasiswaScreen(mahasiswa: mahasiswa);
+              return MahasiswaScreen(idProdi: prodi.id_sms.toString());
             }
           )
         );
@@ -71,18 +82,17 @@ class _MahasiswaListState extends State<MahasiswaList> {
         elevation: 2,
         margin: const EdgeInsets.only(left: 16, bottom: 10, right: 16),
         child: ListTile(
-          leading: Image.asset('assets/mahasiswa_icon/mahasiswa.png', width: 40,),
+          leading: Image.asset('assets/logo/prodi.png'),
           title: Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: Text(
-              mahasiswa.nama_mahasiswa.toString(),
+              prodi.nama_prodi.toString(),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
           ),
-          subtitle: Text("NPM ${mahasiswa.npm.toString()}"),
-          contentPadding: const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 12),
+          subtitle: Text("Akreditasi : ${prodi.nama_akreditasi.toString()}"),
+          contentPadding: const EdgeInsets.all(20),
+          trailing: const Icon(Icons.navigate_next),
         ),
       ),
     );
@@ -91,31 +101,30 @@ class _MahasiswaListState extends State<MahasiswaList> {
   Widget buildSearch() {
     return Material(
       elevation: 2,
-      shadowColor: Colors.blueAccent,
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(10),
         bottomRight: Radius.circular(10),
       ),
+      shadowColor: Colors.blueAccent,
       child: LiveSearchWidget(
         query: query,
-        hintText: 'Cari Berdasarkan NPM atau Nama',
-        onChanged: searchMahasiswa,
+        hintText: 'Cari Berdasarkan Nama Program Studi',
+        onChanged: searchProdi,
       ),
     );
   }
 
-  void searchMahasiswa(String query) {
-    final newMahasiswaList = widget.mahasiswas.where((mahasiswa) {
-      final namaLower = mahasiswa.nama_mahasiswa.toString().toLowerCase();
-      final npm = mahasiswa.npm.toString().toLowerCase();
+  void searchProdi(String query) {
+    final newProdiList = widget.prodis.where((prodi) {
+      final namaLower = prodi.nama_prodi.toString().toLowerCase();
       final searchLower = query.toString().toLowerCase();
 
-      return namaLower.contains(searchLower) || npm.contains(searchLower);
+      return namaLower.contains(searchLower);
     }).toList();
 
     setState(() {
       this.query = query;
-      mahasiswaList = newMahasiswaList;
+      prodiList = newProdiList;
     });
   }
 }

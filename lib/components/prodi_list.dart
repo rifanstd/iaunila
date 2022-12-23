@@ -49,7 +49,12 @@ class _ProdiListState extends State<ProdiList> {
 
   Widget listItem(ProdiModel prodi) {
     return Card(
-      elevation: 2,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Colors.blueAccent,
+        ),
+        borderRadius: BorderRadius.circular(30.0), //<-- SEE HERE
+      ),
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       child: ListTile(
         leading: Image.asset('assets/logo/prodi.png'),
@@ -69,11 +74,6 @@ class _ProdiListState extends State<ProdiList> {
 
   Widget buildSearch() {
     return Material(
-      elevation: 4,
-      borderRadius: const BorderRadius.only(
-        bottomLeft: Radius.circular(10),
-        bottomRight: Radius.circular(10),
-      ),
       child: LiveSearchWidget(
         query: query,
         hintText: 'Cari Berdasarkan Nama Program Studi',
