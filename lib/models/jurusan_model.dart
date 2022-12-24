@@ -12,7 +12,7 @@ class JurusanModel {
     this.nm_lemb,
     this.id_fak_unila,
     this.stat_prodi,
-      this.id_jns_sms,
+    this.id_jns_sms,
   );
 
   JurusanModel.fromJson(Map<String, dynamic> json) {
