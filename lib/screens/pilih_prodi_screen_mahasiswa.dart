@@ -4,19 +4,20 @@ import 'package:iaunila/components/components.dart';
 
 import '../api/iaunila_service.dart';
 
-class PilihProdiScreen extends StatefulWidget {
-  const PilihProdiScreen({Key? key}) : super(key: key);
+class PilihProdiScreenMahasiswa extends StatefulWidget {
+  final String title;
+  const PilihProdiScreenMahasiswa({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<PilihProdiScreen> createState() => _PilihProdiScreenState();
+  State<PilihProdiScreenMahasiswa> createState() => _PilihProdiScreenMahasiswaState();
 }
 
-class _PilihProdiScreenState extends State<PilihProdiScreen> {
+class _PilihProdiScreenMahasiswaState extends State<PilihProdiScreenMahasiswa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mahasiswa", style: TextStyle(color: Colors.white),),
+        title: Text(widget.title.toString(), style: TextStyle(color: Colors.white),),
         shape: RoundedRectangleBorder(
           side: const BorderSide(
             color: Colors.blueAccent,
@@ -32,7 +33,7 @@ class _PilihProdiScreenState extends State<PilihProdiScreen> {
             future: IaunilaService.getAllProdi(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return PilihProdiList(prodis: snapshot.data ?? []);
+                return PilihProdiListMahasiswa(prodis: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

@@ -3,6 +3,8 @@ import 'package:iaunila/components/components.dart';
 import 'package:iaunila/models/models.dart';
 import 'dart:math';
 
+import 'package:iaunila/screens/detail_alumni_screen.dart';
+
 class AlumniList extends StatefulWidget {
   final List<AlumniModel> alumnis;
   AlumniList({Key? key, required this.alumnis}) : super(key: key);
@@ -26,10 +28,6 @@ class _AlumniListState extends State<AlumniList> {
     return Expanded(
       child: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10, top: 4),
-            child: Text("Alumni Ilmu Komputer 2022", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-          ),
           buildSearch(),
           Container(
             decoration: BoxDecoration(
@@ -53,24 +51,36 @@ class _AlumniListState extends State<AlumniList> {
   }
 
   Widget listItem(AlumniModel alumni) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-      child: ListTile(
-        leading: Image.asset('assets/mahasiswa_icon/mahasiswa.png'),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            alumni.nama_alumni.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return DetailAlumniScreen(
+              alumni: alumni,
+            );
+          }),
+        );
+      },
+      child: Card(
+        elevation: 2,
+        margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+        child: ListTile(
+          leading: Image.asset('assets/logo/alumni.png'),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              alumni.nama_alumni.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            ),
           ),
+          subtitle: Text("NPM ${alumni.npm.toString()}"
+              "\nIPK : ${alumni.ipk.toString()}"
+              "\nLama Studi : "
+              "${((alumni.lama_study! / 12) * pow(10.0, 2)).round().toDouble() / (pow(10.0, 2))} "
+              "Tahun"),
+          contentPadding: const EdgeInsets.all(20),
         ),
-        subtitle: Text("NPM ${alumni.npm.toString()}"
-            "\nIPK : ${alumni.ipk.toString()}"
-            "\nLama Studi : "
-            "${((alumni.lama_study! / 12) * pow(10.0, 2)).round().toDouble() / (pow(10.0, 2))} "
-            "Tahun"),
-        contentPadding: const EdgeInsets.all(20),
       ),
     );
   }

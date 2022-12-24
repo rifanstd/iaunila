@@ -96,7 +96,8 @@ class IaunilaService {
       if (json['data'] != null) {
         final detailProdis = <DetailProdiModel>[];
         for (final v in json['data']) {
-          if (v['id_jns_sms'] == '3' && v['nm_lemb'].toString().toLowerCase() == nm_lemb.toLowerCase()) {
+          if (v['id_jns_sms'] == '3' &&
+              v['nm_lemb'].toString().toLowerCase() == nm_lemb.toLowerCase()) {
             detailProdis.add(DetailProdiModel.fromJson(v));
             return detailProdis;
           }
@@ -227,12 +228,6 @@ class IaunilaService {
           alumnis.add(AlumniModel.fromJson(v));
         });
 
-        // Testing
-        for (int i = 0; i < alumnis.length; i++) {
-          print(i.toString() + ' ' + alumnis[i].nama_alumni.toString());
-        }
-
-        // Testing
         if (alumnis != null && alumnis.isNotEmpty) {
           alumnis.sort((a, b) => b.ipk.toString().compareTo(a.ipk.toString()));
           // print(alumnis.last.ipk);
@@ -248,47 +243,46 @@ class IaunilaService {
     }
   }
 
-  static Future<List<AlumniModel>> getAllAlumniByPage(int page) async {
+  static Future<List<AlumniModel>> getAllAlumniByProdi(
+      String idProdi, String tahun) async {
     getToken();
-    var url =
-        'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_alumni?page=$page&limit=50&sort_by=ASC&tahun_lulus=2022&id_prodi=54BBD27B-2376-4CAE-9951-76EF54BD2CA2';
+    int page = 1;
+    final alumnis = <AlumniModel>[];
 
-    var header = {"Authorization": "bearer${token}"};
+    while (true) {
+      var url =
+          'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_alumni?page=$page&limit=50&sort_by=ASC&tahun_lulus=$tahun&id_prodi=$idProdi';
 
-    final response = await http.get(
-      headers: header,
-      Uri.parse(url),
-    );
+      var header = {"Authorization": "bearer$token"};
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> json = jsonDecode(response.body);
+      final response = await http.get(
+        headers: header,
+        Uri.parse(url),
+      );
 
-      if (json['data'] != null) {
-        print("data tidak null");
-        final alumnis = <AlumniModel>[];
-        json['data'].forEach((v) {
-          alumnis.add(AlumniModel.fromJson(v));
-        });
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
 
-        // Testing
-        for (int i = 0; i < alumnis.length; i++) {
-          print(i.toString() + ' ' + alumnis[i].nama_alumni.toString());
+        if (json['data'] != null) {
+          json['data'].forEach((v) {
+            alumnis.add(AlumniModel.fromJson(v));
+          });
+
+          if (alumnis != null && alumnis.isNotEmpty) {
+            alumnis
+                .sort((a, b) => b.ipk.toString().compareTo(a.ipk.toString()));
+          }
+        } else {
+          print("Data Null");
+          break;
         }
-
-        // Testing
-        if (alumnis != null && alumnis.isNotEmpty) {
-          alumnis.sort((a, b) => b.ipk.toString().compareTo(a.ipk.toString()));
-          // print(alumnis.last.ipk);
-        }
-
-        return alumnis;
       } else {
-        print("Data Null");
-        return [];
+        throw ('Gagal terkoneksi');
       }
-    } else {
-      throw ('Gagal terkoneksi');
+
+      page++;
     }
+    return alumnis;
   }
 
   static Future<List<AlumniModel>> getLulusanTerbaik() async {
