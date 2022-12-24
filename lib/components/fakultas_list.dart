@@ -49,6 +49,12 @@ class _FakultasListState extends State<FakultasList> {
 
   Widget listItem(FakultasModel fakultas) {
     return Card(
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Colors.blueAccent,
+        ),
+        borderRadius: BorderRadius.circular(30.0), //<-- SEE HERE
+      ),
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       child: ListTile(
@@ -62,18 +68,13 @@ class _FakultasListState extends State<FakultasList> {
         ),
         subtitle: Text(
             "Jenis : ${fakultas.nm_jns_sms.toString()}"),
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 12),
       ),
     );
   }
 
   Widget buildSearch() {
     return Material(
-      elevation: 4,
-      borderRadius: const BorderRadius.only(
-        bottomLeft: Radius.circular(10),
-        bottomRight: Radius.circular(10),
-      ),
       child: LiveSearchWidget(
         query: query,
         hintText: 'Pencarian Berdasarkan Nama Fakultas',

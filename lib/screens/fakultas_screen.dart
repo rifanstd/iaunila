@@ -15,15 +15,12 @@ class _FakultasScreenState extends State<FakultasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
-        title: const Text(
-          "Fakultas",
-          style: TextStyle(color: Colors.black),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
+        title: const Text("Fakultas", style: TextStyle(color: Colors.white),),
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: Colors.blueAccent,
           ),
+          borderRadius: BorderRadius.circular(5.0), //<-- SEE HERE
         ),
       ),
       body: Column(

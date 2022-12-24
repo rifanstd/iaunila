@@ -52,7 +52,7 @@ class _ProdiListState extends State<ProdiList> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-          return DetailProdiScreen(prodi: prodi);
+          return DetailProdiScreen(nm_lemb: prodi.nama_prodi.toString(),);
         }));
       },
       child: Card(
