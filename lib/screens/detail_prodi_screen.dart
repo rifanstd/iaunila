@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:iaunila/api/iaunila_service.dart';
 import 'package:iaunila/models/models.dart';
 
-class DetailProdiScreen extends StatelessWidget {
-  final ProdiModel prodi;
-  const DetailProdiScreen({Key? key, required this.prodi}) : super(key: key);
+class DetailProdiScreen extends StatefulWidget {
+  final String nm_lemb;
+  const DetailProdiScreen({Key? key, required this.nm_lemb}) : super(key: key);
 
+  @override
+  State<DetailProdiScreen> createState() => _DetailProdiScreenState();
+}
+
+class _DetailProdiScreenState extends State<DetailProdiScreen> {
+  DetailProdiModel? prodi;
+
+  @override
+  void initState() {
+    IaunilaService.getDetailProdi(widget.nm_lemb).then((value) {
+      setState(() {
+        prodi = value.first;
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +39,7 @@ class DetailProdiScreen extends StatelessWidget {
         shadowColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
-        child: Card(
+        child: (prodi == null ? const Center(heightFactor: 20,child: CircularProgressIndicator()) : Card(
           margin: const EdgeInsets.all(20),
           child: Container(
             padding: const EdgeInsets.all(20),
@@ -45,7 +62,7 @@ class DetailProdiScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  prodi.nama_prodi.toString(),
+                  prodi!.nama_lembaga.toString(),
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -60,7 +77,7 @@ class DetailProdiScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  prodi.nama_akreditasi.toString(),
+                  prodi!.stat_prodi.toString(),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -71,11 +88,11 @@ class DetailProdiScreen extends StatelessWidget {
                   height: 12,
                 ),
                 const Text(
-                  "SK Akreditasi",
+                  "Kode Prodi",
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  prodi.sk_akreditasi_prodi.toString(),
+                  prodi!.kode_prodi.toString(),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -86,11 +103,56 @@ class DetailProdiScreen extends StatelessWidget {
                   height: 12,
                 ),
                 const Text(
-                  "Nama Lembaga",
+                  "SKS Lulus",
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  prodi.nama_lembaga.toString(),
+                  prodi!.sks_lulus.toString(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "Gelar Lulusan",
+                  textAlign: TextAlign.start,
+                ),
+                Text(
+                  prodi!.gelar_lulusan.toString(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "Jenjang Pendidikan",
+                  textAlign: TextAlign.start,
+                ),
+                Text(
+                  prodi!.nm_jenj_didik.toString(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "Email",
+                  textAlign: TextAlign.start,
+                ),
+                Text(
+                  prodi!.email.toString(),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -103,6 +165,7 @@ class DetailProdiScreen extends StatelessWidget {
               ],
             ),
           ),
+        )
         ),
       ),
     );
