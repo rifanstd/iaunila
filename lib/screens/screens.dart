@@ -16,3 +16,5 @@ export 'detail_prodi_screen.dart';
 export 'detail_jurusan_screen.dart';
 export 'pilih_prodi_screen_alumni.dart';
 export 'detail_mahasiswa_screen.dart';
+export 'pilih_prodi_screen_matkul.dart';
+export 'detail_matkul_screen.dart';
