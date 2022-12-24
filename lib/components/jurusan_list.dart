@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
+import 'package:iaunila/screens/screens.dart';
 import 'components.dart';
 
 class JurusanList extends StatefulWidget {
@@ -48,32 +49,45 @@ class _JurusanListState extends State<JurusanList> {
   }
 
   Widget listItem(JurusanModel jurusan) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-      child: ListTile(
-        leading: Image.asset('assets/logo/jurusan.png'),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            jurusan.nm_lemb.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return DetailJurusanScreen(jurusan: jurusan);
+            }
+          )
+        );
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: Colors.blueAccent,
           ),
+          borderRadius: BorderRadius.circular(30.0), //<-- SEE HERE
         ),
-        subtitle: Text(
-            "Akreditasi : ${jurusan.stat_prodi.toString()}"),
-        contentPadding: const EdgeInsets.all(20),
+        elevation: 2,
+        margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+        child: ListTile(
+          leading: Image.asset('assets/logo/jurusan.png'),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              jurusan.nm_lemb.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            ),
+          ),
+          subtitle: Text("Akreditasi : ${jurusan.stat_prodi.toString()}"),
+          contentPadding: const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 12),
+          trailing: const Icon(Icons.navigate_next),
+        ),
       ),
     );
   }
 
   Widget buildSearch() {
     return Material(
-      elevation: 4,
-      borderRadius: const BorderRadius.only(
-        bottomLeft: Radius.circular(10),
-        bottomRight: Radius.circular(10),
-      ),
       child: LiveSearchWidget(
         query: query,
         hintText: 'Pencarian Berdasarkan Nama Jurusan',

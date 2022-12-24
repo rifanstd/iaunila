@@ -194,6 +194,22 @@ class IaunilaService {
     }
   }
 
+  static Future<FakultasModel> getNamaFakultasByID(String _id) async {
+    List<FakultasModel> fakultas = [];
+
+    await getAllFakultas().then((value) {
+      value.forEach((element) {
+        if (element.id_sms.toString() == _id) {
+          print(element.nm_lemb);
+          fakultas.add(element);
+        }
+      });
+    });
+
+    return fakultas.first;
+
+  }
+
   static Future<List<AlumniModel>> getAllAlumni() async {
     getToken();
     var url =
