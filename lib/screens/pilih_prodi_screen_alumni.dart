@@ -4,22 +4,20 @@ import 'package:iaunila/components/components.dart';
 
 import '../api/iaunila_service.dart';
 
-class AlumniScreen extends StatefulWidget {
-  final String idProdi;
-  final String tahun;
-  const AlumniScreen({Key? key, required this.idProdi, required this.tahun}) : super(key: key);
+class PilihProdiScreenAlumni extends StatefulWidget {
+  final String title;
+  const PilihProdiScreenAlumni({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<AlumniScreen> createState() => _AlumniScreenState();
+  State<PilihProdiScreenAlumni> createState() => _PilihProdiScreenAlumniState();
 }
 
-class _AlumniScreenState extends State<AlumniScreen> {
-
+class _PilihProdiScreenAlumniState extends State<PilihProdiScreenAlumni> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Alumni", style: TextStyle(color: Colors.white),),
+        title: Text(widget.title.toString(), style: TextStyle(color: Colors.white),),
         shape: RoundedRectangleBorder(
           side: const BorderSide(
             color: Colors.blueAccent,
@@ -28,13 +26,14 @@ class _AlumniScreenState extends State<AlumniScreen> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FutureBuilder<List<AlumniModel>>(
-            future: IaunilaService.getAllAlumniByProdi(widget.idProdi, widget.tahun),
+          FutureBuilder<List<ProdiModel>>(
+            future: IaunilaService.getAllProdi(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return AlumniList(alumnis: snapshot.data ?? []);
+                return PilihProdiListAlumni(prodis: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }

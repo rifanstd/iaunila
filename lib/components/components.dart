@@ -19,4 +19,6 @@ export 'daftar_baca_list.dart';
 export 'daftar_baca_list_item.dart';
 export 'give_us_support.dart';
 export 'contact_for_support.dart';
-export 'pilih_prodi_list.dart';
+export 'pilih_prodi_list_mahasiswa.dart';
+export 'pilih_prodi_list_alumni.dart';
+export 'pilih_tahun_list_alumni.dart';

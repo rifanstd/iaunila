@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/models/models.dart';
-import 'package:iaunila/screens/mahasiswa_screen.dart';
 import 'components.dart';
 
-class PilihProdiList extends StatefulWidget {
+class PilihProdiListAlumni extends StatefulWidget {
   final List<ProdiModel> prodis;
-  const PilihProdiList({Key? key, required this.prodis}) : super(key: key);
+  const PilihProdiListAlumni({Key? key, required this.prodis}) : super(key: key);
 
   @override
-  State<PilihProdiList> createState() => _PilihProdiListState();
+  State<PilihProdiListAlumni> createState() => _PilihProdiListAlumniState();
 }
 
-class _PilihProdiListState extends State<PilihProdiList> {
+class _PilihProdiListAlumniState extends State<PilihProdiListAlumni> {
   late List<ProdiModel> prodiList;
   String query = '';
 
@@ -30,7 +29,7 @@ class _PilihProdiListState extends State<PilihProdiList> {
           const Padding(
             padding: EdgeInsets.only(top: 16, left: 20),
             child: Text(
-              "Pilih Prodi",
+              "Pilih Prodi Lulusan",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
@@ -64,12 +63,12 @@ class _PilihProdiListState extends State<PilihProdiList> {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) {
-              return MahasiswaScreen(idProdi: prodi.id_sms.toString());
-            }
-          )
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return PilihTahunListAlumni(idProdi: prodi.id_sms.toString());
+                }
+            )
         );
       },
       child: Card(

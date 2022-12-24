@@ -41,20 +41,20 @@ class Menu extends StatelessWidget {
           mainAxisSpacing: 5,
         ),
         children: [
-          MenuItem(context, 0),
-          MenuItem(context, 1),
-          MenuItem(context, 2),
-          MenuItem(context, 3),
-          MenuItem(context, 4),
-          MenuItem(context, 5),
-          MenuItem(context, 6),
-          MenuItem(context, 7),
+          MenuItem(context, 0, title[0]),
+          MenuItem(context, 1, title[1]),
+          MenuItem(context, 2, title[2]),
+          MenuItem(context, 3, title[3]),
+          MenuItem(context, 4, title[4]),
+          MenuItem(context, 5, title[5]),
+          MenuItem(context, 6, title[6]),
+          MenuItem(context, 7, title[7]),
         ],
       ),
     );
   }
 
-  Widget MenuItem(BuildContext context, int index) {
+  Widget MenuItem(BuildContext context, int index, String _title) {
     return Material(
       borderRadius: BorderRadius.circular(20),
       elevation: 4,
@@ -66,7 +66,7 @@ class Menu extends StatelessWidget {
         width: 40,
         child: GestureDetector(
           onTap: () {
-            goToSelectedMenu(context, index);
+            goToSelectedMenu(context, index, _title);
             print('Menu ${title[index]} di kLik');
           },
           child: Column(
@@ -96,13 +96,13 @@ class Menu extends StatelessWidget {
     );
   }
 
-  void goToSelectedMenu(BuildContext context, int index) {
+  void goToSelectedMenu(BuildContext context, int index, String _title) {
     if (index == 0) {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return const PilihProdiScreen();
+            return PilihProdiScreenMahasiswa(title: _title);
           },
         ),
       );
@@ -142,7 +142,7 @@ class Menu extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) {
-            return const AlumniScreen();
+            return PilihProdiScreenAlumni(title: _title);
           },
         ),
       );
