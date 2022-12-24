@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iaunila/components/components.dart';
 import 'package:iaunila/models/models.dart';
-import 'dart:math';
+import 'package:iaunila/screens/screens.dart';
 
 class MataKuliahList extends StatefulWidget {
   final List<MataKuliahModel> matkuls;
@@ -26,10 +26,6 @@ class _MataKuliahListState extends State<MataKuliahList> {
     return Expanded(
       child: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10, top: 4),
-            child: Text("Mata Kuliah Ilmu Komputer", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
-          ),
           buildSearch(),
           Container(
             decoration: BoxDecoration(
@@ -53,23 +49,36 @@ class _MataKuliahListState extends State<MataKuliahList> {
   }
 
   Widget listItem(MataKuliahModel matkul) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
-      child: ListTile(
-        leading: Image.asset('assets/logo/mata_kuliah.png'),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Text(
-            matkul.nm_mk.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return DetailMatkulScreen(matkul: matkul);
+            }
+          )
+        );
+      },
+      child: Card(
+        elevation: 2,
+        margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
+        child: ListTile(
+          leading: Image.asset('assets/logo/mata_kuliah.png'),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              matkul.nm_mk.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            ),
           ),
+          subtitle: Text("Status : ${matkul.status.toString()}"
+              "\nSKS : ${matkul.sks_mk.toString()}"
+              "\nKode Mata Kuliah : "
+              "${matkul.kode_mk.toString()}"),
+          contentPadding: const EdgeInsets.all(20),
+          trailing: const Icon(Icons.navigate_next),
         ),
-        subtitle: Text("Status : ${matkul.status.toString()}"
-            "\nSKS : ${matkul.sks_mk.toString()}"
-            "\nKode Mata Kuliah : "
-            "${matkul.kode_mk.toString()}"),
-        contentPadding: const EdgeInsets.all(20),
       ),
     );
   }

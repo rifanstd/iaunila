@@ -298,42 +298,42 @@ class IaunilaService {
     return lulusanTerbaik;
   }
 
-  static Future<List<MataKuliahModel>> getAllMataKuliah(int page) async {
+  static Future<List<MataKuliahModel>> getAllMataKuliah(String idProdi) async {
     getToken();
+    int page = 1;
+    final matkuls = <MataKuliahModel>[];
 
-    var url =
-        'http://onedata.unila.ac.id/api/live/0.1/mata_kuliah/list_matkul?page=$page&limit=50&id_prodi=54BBD27B-2376-4CAE-9951-76EF54BD2CA2';
+    while (true) {
+      var url =
+          'http://onedata.unila.ac.id/api/live/0.1/mata_kuliah/list_matkul?page=$page&limit=50&id_prodi=$idProdi';
 
-    var header = {"Authorization": "bearer${token}"};
+      var header = {"Authorization": "bearer$token"};
 
-    final response = await http.get(
-      headers: header,
-      Uri.parse(url),
-    );
+      final response = await http.get(
+        headers: header,
+        Uri.parse(url),
+      );
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
 
-      if (json['data'] != null) {
-        print("data matkul tidak null");
-        final matkuls = <MataKuliahModel>[];
-        json['data'].forEach((v) {
-          matkuls.add(MataKuliahModel.fromJson(v));
-        });
-
-        // Testing
-        for (int i = 0; i < matkuls.length; i++) {
-          print(i.toString() + ' ' + matkuls[i].nm_mk.toString());
+        if (json['data'] != null) {
+          print("data matkul tidak null");
+          json['data'].forEach((v) {
+            matkuls.add(MataKuliahModel.fromJson(v));
+          });
+        } else {
+          print("Data matkul Null");
+          break;
         }
-
-        return matkuls;
       } else {
-        print("Data matkul Null");
-        return [];
+        throw ('Gagal terkoneksi');
       }
-    } else {
-      throw ('Gagal terkoneksi');
+
+      page++;
     }
+
+    return matkuls;
   }
 
   static Future<List<BukuAjarModel>> getAllBukuAjar(int page) async {

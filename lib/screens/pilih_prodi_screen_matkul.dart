@@ -4,22 +4,20 @@ import 'package:iaunila/components/components.dart';
 
 import '../api/iaunila_service.dart';
 
-class MataKuliahScreen extends StatefulWidget {
-  final String idProdi;
-  const MataKuliahScreen({Key? key, required this.idProdi}) : super(key: key);
+class PilihProdiScreenMatkul extends StatefulWidget {
+  final String title;
+  const PilihProdiScreenMatkul({Key? key, required this.title}) : super(key: key);
 
   @override
-  State<MataKuliahScreen> createState() => _MataKuliahScreenState();
+  State<PilihProdiScreenMatkul> createState() => _PilihProdiScreenMatkulState();
 }
 
-class _MataKuliahScreenState extends State<MataKuliahScreen> {
-  int page = 1;
-
+class _PilihProdiScreenMatkulState extends State<PilihProdiScreenMatkul> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mata Kuliah", style: TextStyle(color: Colors.white),),
+        title: Text(widget.title.toString(), style: TextStyle(color: Colors.white),),
         shape: RoundedRectangleBorder(
           side: const BorderSide(
             color: Colors.blueAccent,
@@ -28,13 +26,14 @@ class _MataKuliahScreenState extends State<MataKuliahScreen> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FutureBuilder<List<MataKuliahModel>>(
-            future: IaunilaService.getAllMataKuliah(widget.idProdi),
+          FutureBuilder<List<ProdiModel>>(
+            future: IaunilaService.getAllProdi(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return MataKuliahList(matkuls: snapshot.data ?? []);
+                return PilihProdiListMatkul(prodis: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
