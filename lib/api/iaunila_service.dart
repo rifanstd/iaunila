@@ -13,7 +13,7 @@ class IaunilaService {
     while (true) {
       var url =
           'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_mahasiswa?page=$page&limit=50&sort_by=ASC&id_prodi=$idProdi';
-      var header = {"Authorization": "bearer$token"};
+      var header = {"Authorization": "$token"};
       final response = await http.get(
         headers: header,
         Uri.parse(url),
@@ -50,7 +50,7 @@ class IaunilaService {
       var url =
           'http://onedata.unila.ac.id/api/live/0.1/lembaga/profil_prodi/daftar?page=$page&limit=50&sort_by=DESC';
 
-      var header = {"Authorization": "bearer$token"};
+      var header = {"Authorization": "$token"};
 
       var response = await http.get(
         headers: header,
@@ -81,7 +81,7 @@ class IaunilaService {
   static Future<List<DetailProdiModel>> getDetailProdi(String nm_lemb) async {
     getToken();
 
-    var header = {"Authorization": "bearer${token}"};
+    var header = {"Authorization": "$token"};
 
     var url = 'http://onedata.unila.ac.id/api/live/0.1/lembaga/daftar_lembaga';
 
@@ -118,7 +118,7 @@ class IaunilaService {
 
     var url = 'http://onedata.unila.ac.id/api/live/0.1/lembaga/daftar_lembaga';
 
-    var header = {"Authorization": "bearer$token"};
+    var header = {"Authorization": "$token"};
 
     final response = await http.get(
       headers: header,
@@ -157,7 +157,7 @@ class IaunilaService {
 
     var url = 'http://onedata.unila.ac.id/api/live/0.1/lembaga/daftar_lembaga';
 
-    var header = {"Authorization": "bearer$token"};
+    var header = {"Authorization": "$token"};
 
     final response = await http.get(
       headers: header,
@@ -211,7 +211,7 @@ class IaunilaService {
     var url =
         'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_alumni?page=1&limit=50&sort_by=ASC&tahun_lulus=2022&id_prodi=54BBD27B-2376-4CAE-9951-76EF54BD2CA2';
 
-    var header = {"Authorization": "bearer${token}"};
+    var header = {"Authorization": "$token"};
 
     final response = await http.get(
       headers: header,
@@ -243,8 +243,7 @@ class IaunilaService {
     }
   }
 
-  static Future<List<AlumniModel>> getAllAlumniByProdi(
-      String idProdi, String tahun) async {
+  static Future<List<AlumniModel>> getAllAlumniByProdi(String idProdi, String tahun) async {
     getToken();
     int page = 1;
     final alumnis = <AlumniModel>[];
@@ -253,7 +252,7 @@ class IaunilaService {
       var url =
           'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/list_alumni?page=$page&limit=50&sort_by=ASC&tahun_lulus=$tahun&id_prodi=$idProdi';
 
-      var header = {"Authorization": "bearer$token"};
+      var header = {"Authorization": "$token"};
 
       final response = await http.get(
         headers: header,
@@ -307,7 +306,7 @@ class IaunilaService {
       var url =
           'http://onedata.unila.ac.id/api/live/0.1/mata_kuliah/list_matkul?page=$page&limit=50&id_prodi=$idProdi';
 
-      var header = {"Authorization": "bearer$token"};
+      var header = {"Authorization": "$token"};
 
       final response = await http.get(
         headers: header,
@@ -342,7 +341,7 @@ class IaunilaService {
     var url =
         'http://onedata.unila.ac.id/api/live/0.1/buku_ajar/daftar?page=$page&limit=50&sort_by=DESC';
 
-    var header = {"Authorization": "bearer${token}"};
+    var header = {"Authorization": "$token"};
 
     final response = await http.get(
       headers: header,
@@ -380,7 +379,7 @@ class IaunilaService {
     var url =
         'http://onedata.unila.ac.id/api/live/0.1/penelitian/daftar?page=$page&limit=100&sort_by=DESC';
 
-    var header = {"Authorization": "bearer${token}"};
+    var header = {"Authorization": "$token"};
 
     final response = await http.get(
       headers: header,
@@ -430,7 +429,7 @@ class IaunilaService {
     });
 
     var jsonObject = json.decode(apiResult.body);
-    String _token = jsonObject['data']['token'].toString();
+    String _token = jsonObject['data']['token_bearer'].toString();
 
     token = _token;
   }
